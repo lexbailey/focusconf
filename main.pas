@@ -46,14 +46,8 @@ type
 var
   frmMain: TfrmMain;
   conf: TIniFile;
+  iniFileName : string;
 
-const
-  {$IFDEF UNIX}
-  iniFileName = '/etc/focusbar.conf';
-  {$ENDIF}
-  {$IFDEF WINDOWS}
-  iniFileName = './focusbar.conf';
-  {$ENDIF}
 
 implementation
 
@@ -63,8 +57,12 @@ implementation
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
-
-
+  {$IFDEF UNIX}
+  iniFileName := '/etc/focusbar.conf';
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  iniFileName := GetEnvironmentVariable('appdata') + '/focusbar/focusbar.conf';
+  {$ENDIF}
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -72,7 +70,12 @@ var
   focusCol, otherCol: string;
 begin
     conf := TINIFile.Create(iniFileName);
+  {$IFDEF UNIX}
   ePort.text := conf.ReadString ('connection', 'port', '/dev/ttyUSB0');
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  ePort.text := conf.ReadString ('connection', 'port', 'COM1');
+  {$ENDIF}
 
   seSkip.Value := conf.ReadInteger('leds', 'skip',   0);
   seUse.value  := conf.ReadInteger('leds', 'use',   30);
@@ -161,7 +164,12 @@ begin
   {$IFDEF WINDOWS}
   // TODO
   {$ENDIF}
+  {$IFDEF UNIX}
   ForkProcess('./focusterm');
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  ForkProcess('./focusterm.exe');
+  {$ENDIF}
 end;
 
 end.
