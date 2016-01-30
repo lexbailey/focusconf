@@ -1,0 +1,36 @@
+object frmChanges: TfrmChanges
+  Left = 338
+  Height = 62
+  Top = 152
+  Width = 255
+  BorderStyle = bsDialog
+  Caption = 'Applying changes...'
+  ClientHeight = 62
+  ClientWidth = 255
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '1.0.10.0'
+  object Label1: TLabel
+    Left = 8
+    Height = 18
+    Top = 8
+    Width = 89
+    Caption = 'Please wait...'
+    ParentColor = False
+  end
+  object ProgressBar1: TProgressBar
+    Left = 8
+    Height = 24
+    Top = 32
+    Width = 240
+    Style = pbstMarquee
+    TabOrder = 0
+  end
+  object tmrClose: TTimer
+    Enabled = False
+    Interval = 2000
+    OnTimer = tmrCloseTimer
+    left = 192
+    top = 8
+  end
+end
