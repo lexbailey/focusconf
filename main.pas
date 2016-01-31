@@ -122,7 +122,7 @@ begin
   try
     Process.InheritHandles := False;
     Process.Options := [];
-    Process.ShowWindow := swoShow;
+    Process.ShowWindow := swoHide;
 
     // Copy default environment variables including DISPLAY variable
     for I := 1 to GetEnvironmentVariableCount do
@@ -162,7 +162,7 @@ begin
   RunCommand('killall -9 focusterm', ignore);
   {$ENDIF}
   {$IFDEF WINDOWS}
-  // TODO
+  RunCommand('taskkill /f /im focusterm.exe', ignore);
   {$ENDIF}
   {$IFDEF UNIX}
   ForkProcess('./focusterm');

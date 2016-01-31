@@ -548,7 +548,7 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '1.4.4.0'
+  LCLVersion = '1.0.10.0'
   object GroupBox1: TGroupBox
     Left = 3
     Height = 53
@@ -557,12 +557,12 @@ object frmMain: TfrmMain
     Align = alTop
     BorderSpacing.Around = 3
     Caption = 'Connection'
-    ClientHeight = 33
+    ClientHeight = 34
     ClientWidth = 290
     TabOrder = 0
     object ePort: TEdit
       Left = 0
-      Height = 33
+      Height = 34
       Top = 0
       Width = 251
       Align = alClient
@@ -571,7 +571,7 @@ object frmMain: TfrmMain
     end
     object btnPortSel: TButton
       Left = 251
-      Height = 33
+      Height = 34
       Top = 0
       Width = 39
       Align = alRight
@@ -588,12 +588,12 @@ object frmMain: TfrmMain
     Align = alTop
     BorderSpacing.Around = 3
     Caption = 'LED strip properties'
-    ClientHeight = 129
+    ClientHeight = 130
     ClientWidth = 290
     TabOrder = 1
     object seSkip: TSpinEdit
       Left = 179
-      Height = 23
+      Height = 27
       Top = 4
       Width = 106
       MaxValue = 254
@@ -601,7 +601,7 @@ object frmMain: TfrmMain
     end
     object seUse: TSpinEdit
       Left = 179
-      Height = 23
+      Height = 27
       Top = 33
       Width = 106
       MaxValue = 255
@@ -610,7 +610,7 @@ object frmMain: TfrmMain
     end
     object seTot: TSpinEdit
       Left = 179
-      Height = 23
+      Height = 27
       Top = 63
       Width = 106
       MaxValue = 255
@@ -619,33 +619,33 @@ object frmMain: TfrmMain
     end
     object Label2: TLabel
       Left = 11
-      Height = 15
+      Height = 18
       Top = 4
-      Width = 102
+      Width = 136
       Caption = 'LEDs to skip at start'
       ParentColor = False
     end
     object Label3: TLabel
       Left = 11
-      Height = 15
+      Height = 18
       Top = 33
-      Width = 63
+      Width = 83
       Caption = 'Usable LEDs'
       ParentColor = False
     end
     object Label4: TLabel
       Left = 11
-      Height = 15
+      Height = 18
       Top = 63
-      Width = 89
+      Width = 115
       Caption = 'Total strip length'
       ParentColor = False
     end
     object cbRev: TCheckBox
       Left = 11
-      Height = 19
+      Height = 24
       Top = 92
-      Width = 116
+      Width = 150
       Caption = 'Reverse used LEDs'
       TabOrder = 3
     end
@@ -658,7 +658,7 @@ object frmMain: TfrmMain
     Align = alTop
     BorderSpacing.Around = 3
     Caption = 'Colours'
-    ClientHeight = 77
+    ClientHeight = 78
     ClientWidth = 290
     TabOrder = 2
     object cbOther: TColorButton
@@ -681,17 +681,17 @@ object frmMain: TfrmMain
     end
     object Label1: TLabel
       Left = 11
-      Height = 15
+      Height = 18
       Top = 4
-      Width = 68
+      Width = 86
       Caption = 'Focus colour'
       ParentColor = False
     end
     object Label5: TLabel
       Left = 11
-      Height = 15
+      Height = 18
       Top = 36
-      Width = 69
+      Width = 88
       Caption = 'Other Colour'
       ParentColor = False
     end

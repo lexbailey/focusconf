@@ -40,7 +40,12 @@ procedure TfrmPorts.FormShow(Sender: TObject);
 var
   ports: TStringList;
 begin
+  {$IFDEF UNIX}
   ports := FindAllFiles('/dev', 'ttyUSB*;ttyS*;ttyACM*', false);
+  {$ENDIF}
+  {$IFDEF WINDOWS}
+  // TODO: enumerate com ports on windows
+  {$ENDIF}
   lbPorts.Clear;
   lbPorts.Items.AddStrings(ports);
   ports.free;
