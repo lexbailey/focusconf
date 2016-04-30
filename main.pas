@@ -16,9 +16,11 @@ type
     btnClose: TButton;
     btnApply: TButton;
     btnPortSel: TButton;
+    cbMouse: TColorButton;
     cbRev: TCheckBox;
     cbFocus: TColorButton;
     cbOther: TColorButton;
+    cbShowMouse: TCheckBox;
     ePort: TEdit;
     GroupBox1: TGroupBox;
     GroupBox2: TGroupBox;
@@ -28,6 +30,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     Panel1: TPanel;
     seSkip: TSpinEdit;
     seUse: TSpinEdit;
@@ -67,7 +70,7 @@ end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
 var
-  focusCol, otherCol: string;
+  focusCol, mouseCol, otherCol: string;
 begin
     conf := TINIFile.Create(iniFileName);
   {$IFDEF UNIX}
@@ -82,23 +85,38 @@ begin
   seTot.value  := conf.ReadInteger('leds', 'total', 30);
   cbRev.Checked := conf.ReadBool('leds', 'reverse', false);
 
+  cbShowMouse.Checked := conf.ReadBool('leds', 'showmouse', false);
+
   focusCol := conf.ReadString ('colours', 'focus', '00ff00');
+  mouseCol := conf.ReadString ('colours', 'cursor', '7f2222');
   otherCol := conf.ReadString ('colours', 'other', '000000');
 
+  if Length(focusCol) <> 6 then focusCol := '000000';
+  if Length(mouseCol) <> 6 then mouseCol := '000000';
+  if Length(otherCol) <> 6 then otherCol := '000000';
+
   focusCol := focusCol[5] + focusCol[6] + focusCol[3] + focusCol[4] + focusCol[1] + focusCol[2];
+  mouseCol := mouseCol[5] + mouseCol[6] + mouseCol[3] + mouseCol[4] + mouseCol[1] + mouseCol[2];
   otherCol := otherCol[5] + otherCol[6] + otherCol[3] + otherCol[4] + otherCol[1] + otherCol[2];
 
   try
     cbFocus.buttonColor := TColor(strtoint('$' + focusCol ));
   except
     on Exception : EConvertError do
-      cbFocus.buttonColor := TColor($00ff00);
+      cbFocus.buttonColor := TColor($000000);
   end;
   try
     cbother.buttonColor := TColor(strtoint('$' + otherCol ));
   except
     on Exception : EConvertError do
       cbother.buttonColor := TColor($000000);
+  end;
+
+  try
+    cbmouse.buttonColor := TColor(strtoint('$' + mouseCol ));
+  except
+    on Exception : EConvertError do
+      cbmouse.buttonColor := TColor($000000);
   end;
 end;
 
@@ -137,7 +155,7 @@ end;
 
 procedure TfrmMain.btnApplyClick(Sender: TObject);
 var
-  focusCol, otherCol: string;
+  focusCol, mouseCol, otherCol: string;
   ignore: string;
 begin
   frmChanges.show;
@@ -148,12 +166,16 @@ begin
   conf.WriteInteger('leds', 'total', seTot.value);
 
   conf.WriteBool('leds', 'reverse', cbRev.Checked);
+  conf.WriteBool('leds', 'showmouse', cbShowMouse.Checked);
 
   focusCol := IntToHex(cbFocus.ButtonColor,6);
+  mouseCol := IntToHex(cbMouse.ButtonColor,6);
   otherCol := IntToHex(cbOther.ButtonColor,6);
   focusCol := focusCol[5] + focusCol[6] + focusCol[3] + focusCol[4] + focusCol[1] + focusCol[2];
+  mouseCol := mouseCol[5] + mouseCol[6] + mouseCol[3] + mouseCol[4] + mouseCol[1] + mouseCol[2];
   otherCol := otherCol[5] + otherCol[6] + otherCol[3] + otherCol[4] + otherCol[1] + otherCol[2];
   conf.WriteString ('colours', 'focus', focusCol);
+  conf.WriteString ('colours', 'cursor', mouseCol);
   conf.WriteString ('colours', 'other', otherCol);
 
   // Config written, restart the focusterm

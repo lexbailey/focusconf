@@ -1,6 +1,6 @@
 object frmMain: TfrmMain
   Left = 583
-  Height = 342
+  Height = 426
   Top = 368
   Width = 300
   HorzScrollBar.Page = 300
@@ -10,7 +10,7 @@ object frmMain: TfrmMain
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Focus Bar Config'
-  ClientHeight = 342
+  ClientHeight = 426
   ClientWidth = 300
   Icon.Data = {
     3E42000000000100010040400000010020002842000016000000280000004000
@@ -548,7 +548,7 @@ object frmMain: TfrmMain
   OnCreate = FormCreate
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '1.0.10.0'
+  LCLVersion = '1.6.0.4'
   object GroupBox1: TGroupBox
     Left = 3
     Height = 53
@@ -557,12 +557,12 @@ object frmMain: TfrmMain
     Align = alTop
     BorderSpacing.Around = 3
     Caption = 'Connection'
-    ClientHeight = 34
+    ClientHeight = 33
     ClientWidth = 290
     TabOrder = 0
     object ePort: TEdit
       Left = 0
-      Height = 34
+      Height = 33
       Top = 0
       Width = 251
       Align = alClient
@@ -571,7 +571,7 @@ object frmMain: TfrmMain
     end
     object btnPortSel: TButton
       Left = 251
-      Height = 34
+      Height = 33
       Top = 0
       Width = 39
       Align = alRight
@@ -588,12 +588,12 @@ object frmMain: TfrmMain
     Align = alTop
     BorderSpacing.Around = 3
     Caption = 'LED strip properties'
-    ClientHeight = 130
+    ClientHeight = 129
     ClientWidth = 290
     TabOrder = 1
     object seSkip: TSpinEdit
       Left = 179
-      Height = 27
+      Height = 23
       Top = 4
       Width = 106
       MaxValue = 254
@@ -601,7 +601,7 @@ object frmMain: TfrmMain
     end
     object seUse: TSpinEdit
       Left = 179
-      Height = 27
+      Height = 23
       Top = 33
       Width = 106
       MaxValue = 255
@@ -610,7 +610,7 @@ object frmMain: TfrmMain
     end
     object seTot: TSpinEdit
       Left = 179
-      Height = 27
+      Height = 23
       Top = 63
       Width = 106
       MaxValue = 255
@@ -619,52 +619,52 @@ object frmMain: TfrmMain
     end
     object Label2: TLabel
       Left = 11
-      Height = 18
+      Height = 15
       Top = 4
-      Width = 136
+      Width = 102
       Caption = 'LEDs to skip at start'
       ParentColor = False
     end
     object Label3: TLabel
       Left = 11
-      Height = 18
+      Height = 15
       Top = 33
-      Width = 83
+      Width = 63
       Caption = 'Usable LEDs'
       ParentColor = False
     end
     object Label4: TLabel
       Left = 11
-      Height = 18
+      Height = 15
       Top = 63
-      Width = 115
+      Width = 89
       Caption = 'Total strip length'
       ParentColor = False
     end
     object cbRev: TCheckBox
       Left = 11
-      Height = 24
+      Height = 19
       Top = 92
-      Width = 150
+      Width = 116
       Caption = 'Reverse used LEDs'
       TabOrder = 3
     end
   end
   object GroupBox3: TGroupBox
     Left = 3
-    Height = 97
+    Height = 181
     Top = 211
     Width = 294
     Align = alTop
     BorderSpacing.Around = 3
     Caption = 'Colours'
-    ClientHeight = 78
+    ClientHeight = 161
     ClientWidth = 290
     TabOrder = 2
     object cbOther: TColorButton
       Left = 179
       Height = 25
-      Top = 36
+      Top = 100
       Width = 75
       BorderWidth = 2
       ButtonColorSize = 16
@@ -681,25 +681,50 @@ object frmMain: TfrmMain
     end
     object Label1: TLabel
       Left = 11
-      Height = 18
+      Height = 15
       Top = 4
-      Width = 86
+      Width = 68
       Caption = 'Focus colour'
       ParentColor = False
     end
     object Label5: TLabel
       Left = 11
-      Height = 18
-      Top = 36
-      Width = 88
+      Height = 15
+      Top = 68
+      Width = 75
+      Caption = 'Mouse Colour'
+      ParentColor = False
+    end
+    object Label6: TLabel
+      Left = 11
+      Height = 15
+      Top = 100
+      Width = 69
       Caption = 'Other Colour'
       ParentColor = False
+    end
+    object cbMouse: TColorButton
+      Left = 179
+      Height = 25
+      Top = 68
+      Width = 75
+      BorderWidth = 2
+      ButtonColorSize = 16
+      ButtonColor = clBlack
+    end
+    object cbShowMouse: TCheckBox
+      Left = 11
+      Height = 19
+      Top = 36
+      Width = 176
+      Caption = 'Highlight the mouse posision'
+      TabOrder = 0
     end
   end
   object Panel1: TPanel
     Left = 0
     Height = 31
-    Top = 311
+    Top = 395
     Width = 300
     Align = alClient
     ClientHeight = 31
