@@ -29,7 +29,7 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Label5: TLabel;
+    lblMouse: TLabel;
     Label6: TLabel;
     Panel1: TPanel;
     seSkip: TSpinEdit;
@@ -66,6 +66,14 @@ begin
   {$IFDEF WINDOWS}
   iniFileName := GetEnvironmentVariable('appdata') + '/focusbar/focusbar.conf';
   {$ENDIF}
+
+  {$IFDEF UNIX}
+  cbShowMouse.Checked:=false;
+  cbShowMouse.Enabled:=false;
+  cbMouse.Enabled:=false;
+  cbMouse.Color:=$00000000;
+  lblMouse.Enabled:=false;
+  {$ENDIF}
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -86,6 +94,9 @@ begin
   cbRev.Checked := conf.ReadBool('leds', 'reverse', false);
 
   cbShowMouse.Checked := conf.ReadBool('leds', 'showmouse', false);
+  {$IFDEF UNIX}
+  cbShowMouse.checked := false;
+  {$ENDIF}
 
   focusCol := conf.ReadString ('colours', 'focus', '00ff00');
   mouseCol := conf.ReadString ('colours', 'cursor', '7f2222');
